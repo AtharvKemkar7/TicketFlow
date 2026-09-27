@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:helixdesk;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+helixdesk:
+  uploads:
+    dir: ${java.io.tmpdir}/helixdesk-test-uploads
+
+logging:
+  level:
+    com.helixdesk: INFO
+    org.hibernate.SQL: WARN
