@@ -1,0 +1,22 @@
+package com.helixdesk.enums;
+
+public enum AuditAction {
+    TICKET_CREATED,
+    CATEGORY_CHANGED,
+    PRIORITY_CHANGED,
+    STATUS_CHANGED,
+    COMMENT_ADDED,
+    ASSIGNMENT,
+    REASSIGNMENT,
+    ESCALATION,
+    RESOLUTION,
+    REOPENING,
+    CLOSURE,
+    CANCELLATION,
+    AI_ATTEMPT,
+    AI_HANDOFF,
+    SLA_AT_RISK,
+    SLA_BREACHED,
+    USER_UPDATED,
+    LOGIN
+}

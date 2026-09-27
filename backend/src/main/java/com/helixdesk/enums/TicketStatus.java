@@ -1,0 +1,18 @@
+package com.helixdesk.enums;
+
+public enum TicketStatus {
+    NEW,
+    AI_PROCESSING,
+    AI_ATTEMPTING_RESOLUTION,
+    HUMAN_REQUIRED,
+    ASSIGNED,
+    IN_PROGRESS,
+    WAITING_FOR_USER,
+    RESOLVED,
+    USER_CONFIRMATION,
+    REOPENED,
+    REASSIGNED,
+    ESCALATED,
+    CLOSED,
+    CANCELLED
+}
