@@ -1,0 +1,31 @@
+<section class="kb">
+  <article class="panel">
+    <h2>Knowledge base</h2>
+    <div class="row">
+      <input [(ngModel)]="query" placeholder="Search articles" (keyup.enter)="search()" />
+      <button type="button" (click)="search()">Search</button>
+    </div>
+    @for (article of articles; track article.id) {
+      <button type="button" class="article" (click)="open(article)">
+        <strong>{{ article.title }}</strong>
+        <span class="muted">{{ article.categoryName || 'General' }} · {{ article.status }}</span>
+      </button>
+    }
+  </article>
+  <article class="panel">
+    @if (selected) {
+      <h3>{{ selected.title }}</h3>
+      <p class="muted">{{ selected.tags }}</p>
+      <pre>{{ selected.content }}</pre>
+    } @else {
+      <p class="empty">Select an article.</p>
+    }
+    @if (canCreate) {
+      <h3>Publish article</h3>
+      <input [(ngModel)]="title" placeholder="Title" />
+      <input [(ngModel)]="tags" placeholder="Tags" />
+      <textarea [(ngModel)]="content" placeholder="Content"></textarea>
+      <button type="button" (click)="create()">Publish</button>
+    }
+  </article>
+</section>

@@ -1,0 +1,4 @@
+.form-wrap { max-width: 760px; }
+label { display: grid; gap: 6px; flex: 1; color: var(--muted); font-size: 13px; }
+.error { color: var(--danger); }
+.row label { min-width: 220px; }

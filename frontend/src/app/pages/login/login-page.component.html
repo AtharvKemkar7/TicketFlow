@@ -1,0 +1,34 @@
+<div class="auth">
+  <section class="hero">
+    <span class="mark">HX</span>
+    <p>AI IT Help Desk</p>
+    <h1>Fresh teal workspace for faster ticket resolution.</h1>
+    <p>Intake issues, route work, and close tickets with a calm operations console built for requesters, specialists, and admins.</p>
+  </section>
+  <section class="form-side">
+    <div class="panel">
+      <p class="eyebrow">HelixDesk</p>
+      <h1>Sign in</h1>
+      <p class="hint">Use a demo account or your own credentials.</p>
+      <div class="accounts">
+        <button type="button" (click)="fill('user@helixdesk.local')">Requester · user&#64;helixdesk.local</button>
+        <button type="button" (click)="fill('specialist@helixdesk.local')">Specialist · specialist&#64;helixdesk.local</button>
+        <button type="button" (click)="fill('admin@helixdesk.local')">Admin · admin&#64;helixdesk.local</button>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <label>Email
+          <input type="email" formControlName="email" />
+        </label>
+        <label>Password
+          <input type="password" formControlName="password" />
+        </label>
+        @if (error) {
+          <p class="error">{{ error }}</p>
+        }
+        <button type="submit" [disabled]="loading">{{ loading ? 'Signing in...' : 'Sign in' }}</button>
+      </form>
+      <p class="hint">Password for demo accounts: Password123!</p>
+      <a routerLink="/register">Create an account</a>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,38 @@
+<section class="grid">
+  <article class="panel">
+    <h2>Create user</h2>
+    <form [formGroup]="form" (ngSubmit)="create()" class="grid">
+      <div class="row">
+        <input formControlName="firstName" placeholder="First name" />
+        <input formControlName="lastName" placeholder="Last name" />
+      </div>
+      <input formControlName="email" placeholder="Email" />
+      <input formControlName="password" placeholder="Password" />
+      <div class="row">
+        <select formControlName="role">
+          <option>USER</option>
+          <option>SPECIALIST</option>
+          <option>ADMIN</option>
+        </select>
+        <input formControlName="department" placeholder="Department" />
+      </div>
+      <button type="submit">Create</button>
+    </form>
+  </article>
+  <article class="panel">
+    <h2>Directory</h2>
+    <table>
+      <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th></tr></thead>
+      <tbody>
+        @for (user of users; track user.id) {
+          <tr>
+            <td>{{ user.fullName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.status }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </article>
+</section>

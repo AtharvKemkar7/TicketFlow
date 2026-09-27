@@ -1,0 +1,13 @@
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.card {
+  border-top: 4px solid var(--accent);
+}
+
+@media (max-width: 800px) {
+  .split { grid-template-columns: 1fr; }
+}

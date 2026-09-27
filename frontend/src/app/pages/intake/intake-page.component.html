@@ -1,0 +1,16 @@
+<section class="panel">
+  <p class="muted">Conversational intake</p>
+  <h2>Talk to HelixDesk</h2>
+  <div class="chat">
+    @for (msg of chat; track $index) {
+      <div class="bubble" [class.user]="msg.role === 'user'" [class.assistant]="msg.role === 'assistant'">{{ msg.text }}</div>
+    }
+  </div>
+  @if (ticketId) {
+    <p>Ticket created: <a [routerLink]="['/tickets', ticketId]">{{ ticketNumber }}</a></p>
+  }
+  <div class="row">
+    <input [(ngModel)]="message" placeholder="VPN will not connect..." (keyup.enter)="send()" />
+    <button type="button" (click)="send()" [disabled]="sending">Send</button>
+  </div>
+</section>

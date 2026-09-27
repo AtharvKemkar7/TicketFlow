@@ -1,0 +1,9 @@
+.meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 16px 0 24px;
+}
+
+dt { color: var(--muted); font-size: 12px; }
+dd { margin: 4px 0 0; }

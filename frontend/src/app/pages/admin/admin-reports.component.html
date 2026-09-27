@@ -1,0 +1,53 @@
+<section class="grid">
+  <div>
+    <p class="muted">Operations</p>
+    <h2>Reports and audit</h2>
+  </div>
+  <div class="cards">
+    <article class="card"><p class="muted">Total</p><p class="stat">{{ report?.totalTickets || 0 }}</p></article>
+    <article class="card"><p class="muted">Open</p><p class="stat">{{ report?.openTickets || 0 }}</p></article>
+    <article class="card"><p class="muted">Closed</p><p class="stat">{{ report?.closedTickets || 0 }}</p></article>
+    <article class="card"><p class="muted">Resolved</p><p class="stat">{{ report?.resolvedTickets || 0 }}</p></article>
+    <article class="card"><p class="muted">Reopened</p><p class="stat">{{ report?.reopenedTickets || 0 }}</p></article>
+    <article class="card"><p class="muted">Escalated</p><p class="stat">{{ report?.escalatedTickets || 0 }}</p></article>
+    <article class="card"><p class="muted">Avg hours</p><p class="stat">{{ report?.averageResolutionHours || 0 }}</p></article>
+    <article class="card"><p class="muted">SLA %</p><p class="stat">{{ report?.slaCompliancePercent || 0 }}</p></article>
+    <article class="card"><p class="muted">AI attempts</p><p class="stat">{{ report?.aiResolutionAttempts || 0 }}</p></article>
+    <article class="card"><p class="muted">Handoffs</p><p class="stat">{{ report?.aiToHumanHandoffs || 0 }}</p></article>
+  </div>
+  <div class="split">
+    <article class="panel">
+      <h3>By team</h3>
+      @for (item of entries(report?.byTeam); track item.key) {
+        <p>{{ item.key }} · {{ item.value }}</p>
+      }
+    </article>
+    <article class="panel">
+      <h3>By specialist</h3>
+      @for (item of entries(report?.bySpecialist); track item.key) {
+        <p>{{ item.key }} · {{ item.value }}</p>
+      }
+    </article>
+  </div>
+  <article class="panel">
+    <h3>Audit log</h3>
+    @if (!audit.length) {
+      <p class="empty">No audit events yet.</p>
+    } @else {
+      <table>
+        <thead><tr><th>When</th><th>Actor</th><th>Action</th><th>Ticket</th><th>Change</th></tr></thead>
+        <tbody>
+          @for (entry of audit; track entry.id) {
+            <tr>
+              <td>{{ entry.createdAt }}</td>
+              <td>{{ entry.actor || 'SYSTEM' }}</td>
+              <td>{{ entry.action }}</td>
+              <td>{{ entry.ticketId || '—' }}</td>
+              <td>{{ entry.previousValue || '—' }} → {{ entry.newValue || '—' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </article>
+</section>

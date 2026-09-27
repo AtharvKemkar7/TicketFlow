@@ -1,0 +1,41 @@
+<section class="grid">
+  <div class="hero-card">
+    <div>
+      <p class="muted">Requester workspace</p>
+      <h2>Welcome back, {{ user?.firstName || user?.fullName }}</h2>
+      <p>Track open work, reply to waiting tickets, and start AI intake in one place.</p>
+    </div>
+    <div class="row">
+      <a routerLink="/intake"><button type="button">Start AI intake</button></a>
+      <a routerLink="/tickets/new"><button type="button" class="secondary">Create ticket</button></a>
+    </div>
+  </div>
+  <div class="cards">
+    <article class="card"><p class="muted">Open tickets</p><p class="stat">{{ openCount }}</p></article>
+    <article class="card"><p class="muted">Waiting on you</p><p class="stat">{{ waitingCount }}</p></article>
+    <article class="card"><p class="muted">Closed</p><p class="stat">{{ resolvedCount }}</p></article>
+  </div>
+  <article class="panel">
+    <h3>Recent tickets</h3>
+    @if (!recent().length) {
+      <p class="empty">No tickets yet. Use AI intake or create one manually.</p>
+    } @else {
+      <table>
+        <thead>
+          <tr><th>Number</th><th>Title</th><th>Status</th><th>Priority</th><th>SLA</th></tr>
+        </thead>
+        <tbody>
+          @for (ticket of recent(); track ticket.id) {
+            <tr>
+              <td><a [routerLink]="['/tickets', ticket.id]">{{ ticket.ticketNumber }}</a></td>
+              <td>{{ ticket.title }}</td>
+              <td><span [class]="'pill status-' + ticket.status">{{ ticket.status }}</span></td>
+              <td><span [class]="'pill priority-' + ticket.priority">{{ ticket.priority }}</span></td>
+              <td><span [class]="'pill sla-' + ticket.slaState">{{ ticket.slaState }}</span></td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </article>
+</section>

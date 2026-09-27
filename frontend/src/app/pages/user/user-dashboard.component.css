@@ -1,0 +1,37 @@
+.grid { gap: 20px; }
+
+.hero-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #0b7c71, #14b8a6);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+.hero-card h2,
+.hero-card p {
+  color: #fff;
+}
+
+.hero-card .muted {
+  color: #ccfbf1;
+}
+
+.card {
+  border-top: 4px solid var(--accent);
+}
+
+.hero-card button {
+  background: #fff;
+  color: var(--accent-strong);
+}
+
+.hero-card button.secondary {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+}

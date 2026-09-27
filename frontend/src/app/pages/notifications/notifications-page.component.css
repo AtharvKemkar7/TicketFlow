@@ -1,0 +1,15 @@
+.note {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.unread {
+  background: #f0fdfa;
+  margin: 0 -8px;
+  padding: 12px 8px;
+  border-radius: 12px;
+}
+
+.unread p {
+  font-weight: 600;
+}

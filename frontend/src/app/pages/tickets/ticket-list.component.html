@@ -1,0 +1,40 @@
+<section class="grid">
+  <div class="row spread">
+    <div>
+      <p class="muted">Tickets</p>
+      <h2>Queue</h2>
+    </div>
+    <a routerLink="/tickets/new"><button type="button">New ticket</button></a>
+  </div>
+  <input [(ngModel)]="filter" placeholder="Filter by number, title, status..." />
+  @if (!filtered().length) {
+    <p class="empty">No tickets match this view.</p>
+  } @else {
+    <table>
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Title</th>
+          <th>Status</th>
+          <th>Priority</th>
+          <th>Category</th>
+          <th>Assignee</th>
+          <th>SLA</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (ticket of filtered(); track ticket.id) {
+          <tr>
+            <td><a [routerLink]="['/tickets', ticket.id]">{{ ticket.ticketNumber }}</a></td>
+            <td>{{ ticket.title }}</td>
+            <td><span [class]="'pill status-' + ticket.status">{{ ticket.status }}</span></td>
+            <td><span [class]="'pill priority-' + ticket.priority">{{ ticket.priority }}</span></td>
+            <td>{{ ticket.categoryName || '—' }}</td>
+            <td>{{ ticket.assignedSpecialistName || 'Unassigned' }}</td>
+            <td><span [class]="'pill sla-' + ticket.slaState">{{ ticket.slaState }}</span></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</section>

@@ -1,0 +1,48 @@
+<div class="layout">
+  <div class="mobile-bar">
+    <strong>HelixDesk</strong>
+    <button type="button" class="ghost" (click)="menuOpen = !menuOpen">Menu</button>
+  </div>
+  <aside class="sidebar" [class.open]="menuOpen">
+    <div class="brand">
+      <span class="mark">HX</span>
+      <div>
+        <strong>HelixDesk</strong>
+        <p>AI IT Help Desk</p>
+      </div>
+    </div>
+    <nav>
+      @if (is('USER') || is('ADMIN')) {
+        <a routerLink="/app" routerLinkActive="active">Dashboard</a>
+        <a routerLink="/intake" routerLinkActive="active">AI Intake</a>
+        <a routerLink="/tickets" routerLinkActive="active">My Tickets</a>
+        <a routerLink="/tickets/new" routerLinkActive="active">Create Ticket</a>
+      }
+      @if (is('SPECIALIST') || is('ADMIN')) {
+        <a routerLink="/specialist" routerLinkActive="active">Specialist Queue</a>
+      }
+      @if (is('ADMIN')) {
+        <a routerLink="/admin" routerLinkActive="active">Admin</a>
+        <a routerLink="/admin/users" routerLinkActive="active">Users</a>
+        <a routerLink="/admin/catalog" routerLinkActive="active">Catalog</a>
+        <a routerLink="/admin/reports" routerLinkActive="active">Reports</a>
+        <a routerLink="/admin/settings" routerLinkActive="active">Settings</a>
+      }
+      <a routerLink="/knowledge" routerLinkActive="active">Knowledge</a>
+      <a routerLink="/notifications" routerLinkActive="active">Notifications @if (unread) { <span class="badge">{{ unread }}</span> }</a>
+      <a routerLink="/profile" routerLinkActive="active">Profile</a>
+    </nav>
+  </aside>
+  <section class="content">
+    <header class="top">
+      <div>
+        <p class="muted">{{ user?.role }} workspace</p>
+        <h1>{{ user?.fullName }}</h1>
+      </div>
+      <button type="button" class="ghost" (click)="logout()">Sign out</button>
+    </header>
+    <div class="page">
+      <router-outlet />
+    </div>
+  </section>
+</div>

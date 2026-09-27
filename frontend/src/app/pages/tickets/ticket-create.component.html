@@ -1,0 +1,47 @@
+<section class="panel form-wrap">
+  <p class="muted">Manual intake</p>
+  <h2>Create a ticket</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()" class="grid">
+    <label>Title <input formControlName="title" /></label>
+    <label>Description <textarea formControlName="description"></textarea></label>
+    <div class="row">
+      <label>Category
+        <select formControlName="categoryId">
+          <option [ngValue]="null">Select</option>
+          @for (cat of categories; track cat.id) {
+            <option [ngValue]="cat.id">{{ cat.name }}</option>
+          }
+        </select>
+      </label>
+      <label>Subcategory
+        <select formControlName="subcategoryId">
+          <option [ngValue]="null">Select</option>
+          @for (sub of subcategories; track sub.id) {
+            <option [ngValue]="sub.id">{{ sub.name }}</option>
+          }
+        </select>
+      </label>
+    </div>
+    <div class="row">
+      <label>Impact
+        <select formControlName="impact">
+          <option>INDIVIDUAL</option>
+          <option>TEAM</option>
+          <option>DEPARTMENT</option>
+          <option>ORGANIZATION</option>
+        </select>
+      </label>
+      <label>Urgency
+        <select formControlName="urgency">
+          <option>LOW</option>
+          <option>MEDIUM</option>
+          <option>HIGH</option>
+          <option>CRITICAL</option>
+        </select>
+      </label>
+    </div>
+    <label>Business effect <textarea formControlName="businessEffect"></textarea></label>
+    @if (error) { <p class="error">{{ error }}</p> }
+    <button type="submit" [disabled]="loading">{{ loading ? 'Creating...' : 'Submit ticket' }}</button>
+  </form>
+</section>

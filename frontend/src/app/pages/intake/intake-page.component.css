@@ -1,0 +1,8 @@
+.chat {
+  min-height: 280px;
+  margin: 16px 0;
+  padding: 16px;
+  border-radius: 16px;
+  background: #f4fbf9;
+  border: 1px solid var(--border);
+}

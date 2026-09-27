@@ -1,0 +1,47 @@
+<section class="grid">
+  <div class="row spread">
+    <div>
+      <p class="muted">Specialist workspace</p>
+      <h2>{{ profile?.fullName || 'Queue' }}</h2>
+    </div>
+    <div class="row">
+      <select [(ngModel)]="availability">
+        <option>AVAILABLE</option>
+        <option>BUSY</option>
+        <option>OFFLINE</option>
+      </select>
+      <button type="button" class="secondary" (click)="updateAvailability()">Update availability</button>
+    </div>
+  </div>
+  <div class="cards">
+    <article class="card"><p class="muted">Assigned</p><p class="stat">{{ stats?.assigned || 0 }}</p></article>
+    <article class="card"><p class="muted">Open</p><p class="stat">{{ stats?.open || 0 }}</p></article>
+    <article class="card"><p class="muted">In progress</p><p class="stat">{{ stats?.inProgress || 0 }}</p></article>
+    <article class="card"><p class="muted">Waiting</p><p class="stat">{{ stats?.waiting || 0 }}</p></article>
+    <article class="card"><p class="muted">High priority</p><p class="stat">{{ stats?.highPriority || 0 }}</p></article>
+    <article class="card"><p class="muted">SLA at risk</p><p class="stat">{{ stats?.slaAtRisk || 0 }}</p></article>
+  </div>
+  <article class="panel">
+    <h3>My tickets</h3>
+    @if (!tickets.length) {
+      <p class="empty">No assigned tickets.</p>
+    } @else {
+      <table>
+        <thead>
+          <tr><th>Number</th><th>Title</th><th>Status</th><th>Priority</th><th>SLA</th></tr>
+        </thead>
+        <tbody>
+          @for (ticket of tickets; track ticket.id) {
+            <tr>
+              <td><a [routerLink]="['/tickets', ticket.id]">{{ ticket.ticketNumber }}</a></td>
+              <td>{{ ticket.title }}</td>
+              <td><span [class]="'pill status-' + ticket.status">{{ ticket.status }}</span></td>
+              <td><span [class]="'pill priority-' + ticket.priority">{{ ticket.priority }}</span></td>
+              <td><span [class]="'pill sla-' + ticket.slaState">{{ ticket.slaState }}</span></td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </article>
+</section>

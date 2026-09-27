@@ -1,0 +1,26 @@
+<section class="grid">
+  <article class="panel">
+    <p class="muted">Administration</p>
+    <h2>System settings</h2>
+    <div class="row">
+      <input [(ngModel)]="key" placeholder="Setting key" />
+      <input [(ngModel)]="value" placeholder="Value" />
+      <button type="button" (click)="save()">Save</button>
+    </div>
+    @if (!settings.length) {
+      <p class="empty">No settings stored.</p>
+    } @else {
+      <table>
+        <thead><tr><th>Key</th><th>Value</th></tr></thead>
+        <tbody>
+          @for (item of settings; track item.key) {
+            <tr>
+              <td>{{ item.key }}</td>
+              <td>{{ item.value }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </article>
+</section>

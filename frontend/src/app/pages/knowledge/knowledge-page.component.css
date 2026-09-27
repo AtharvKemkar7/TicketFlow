@@ -1,0 +1,29 @@
+.kb {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 16px;
+}
+
+.article {
+  width: 100%;
+  text-align: left;
+  background: #f4fbf9;
+  color: var(--text);
+  border: 1px solid var(--border);
+  margin-top: 10px;
+  display: grid;
+}
+
+.article:hover {
+  background: var(--bg-soft);
+}
+
+pre {
+  white-space: pre-wrap;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .kb { grid-template-columns: 1fr; }
+}

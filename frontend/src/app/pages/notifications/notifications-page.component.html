@@ -1,0 +1,20 @@
+<section class="panel">
+  <h2>Notifications</h2>
+  @if (!items.length) {
+    <p class="empty">No notifications.</p>
+  }
+  @for (item of items; track item.id) {
+    <article class="note" [class.unread]="!item.read">
+      <p>{{ item.message }}</p>
+      <div class="row">
+        <span class="muted">{{ item.type }} · {{ item.createdAt }}</span>
+        @if (item.ticketId) {
+          <a [routerLink]="['/tickets', item.ticketId]">Open ticket</a>
+        }
+        @if (!item.read) {
+          <button type="button" class="secondary" (click)="mark(item)">Mark read</button>
+        }
+      </div>
+    </article>
+  }
+</section>

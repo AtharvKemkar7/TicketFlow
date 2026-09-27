@@ -1,0 +1,17 @@
+<div class="auth">
+  <section class="panel">
+    <p class="eyebrow">New requester</p>
+    <h1>Create your HelixDesk account</h1>
+    <p class="hint">Join the teal workspace and open tickets in minutes.</p>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <label>First name <input formControlName="firstName" /></label>
+      <label>Last name <input formControlName="lastName" /></label>
+      <label>Email <input type="email" formControlName="email" /></label>
+      <label>Password <input type="password" formControlName="password" /></label>
+      <label>Department <input formControlName="department" /></label>
+      @if (error) { <p class="error">{{ error }}</p> }
+      <button type="submit" [disabled]="loading">{{ loading ? 'Creating...' : 'Register' }}</button>
+    </form>
+    <a routerLink="/login">Already have an account</a>
+  </section>
+</div>

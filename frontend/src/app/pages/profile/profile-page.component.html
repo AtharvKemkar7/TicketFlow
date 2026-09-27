@@ -1,0 +1,22 @@
+<section class="panel">
+  <h2>Profile</h2>
+  @if (user) {
+    <dl class="meta">
+      <div><dt>Name</dt><dd>{{ user.fullName }}</dd></div>
+      <div><dt>Email</dt><dd>{{ user.email }}</dd></div>
+      <div><dt>Role</dt><dd>{{ user.role }}</dd></div>
+      <div><dt>Status</dt><dd>{{ user.status }}</dd></div>
+      <div><dt>Department</dt><dd>{{ user.department || '—' }}</dd></div>
+    </dl>
+  }
+  @if (specialist) {
+    <h3>Specialist profile</h3>
+    <dl class="meta">
+      <div><dt>Level</dt><dd>{{ specialist.supportLevel }}</dd></div>
+      <div><dt>Availability</dt><dd>{{ specialist.availability }}</dd></div>
+      <div><dt>Workload</dt><dd>{{ specialist.currentWorkload }}</dd></div>
+      <div><dt>Team</dt><dd>{{ specialist.teamName || '—' }}</dd></div>
+      <div><dt>Skills</dt><dd>{{ specialist.skills.join(', ') || '—' }}</dd></div>
+    </dl>
+  }
+</section>

@@ -1,0 +1,54 @@
+<section class="grid">
+  <div>
+    <p class="muted">Operations</p>
+    <h2>Admin dashboard</h2>
+  </div>
+  <div class="cards">
+    <article class="card"><p class="muted">Total</p><p class="stat">{{ report?.totalTickets || 0 }}</p></article>
+    <article class="card"><p class="muted">Open</p><p class="stat">{{ report?.openTickets || 0 }}</p></article>
+    <article class="card"><p class="muted">SLA %</p><p class="stat">{{ report?.slaCompliancePercent || 0 }}</p></article>
+    <article class="card"><p class="muted">AI handoffs</p><p class="stat">{{ report?.aiToHumanHandoffs || 0 }}</p></article>
+  </div>
+  <div class="row">
+    <a routerLink="/admin/users"><button type="button">Users</button></a>
+    <a routerLink="/admin/catalog"><button type="button" class="secondary">Catalog</button></a>
+    <a routerLink="/admin/reports"><button type="button" class="secondary">Reports</button></a>
+    <a routerLink="/admin/settings"><button type="button" class="secondary">Settings</button></a>
+  </div>
+  <div class="split">
+    <article class="panel">
+      <h3>By priority</h3>
+      @for (item of entries(report?.byPriority); track item.key) {
+        <p>{{ item.key }} · {{ item.value }}</p>
+      }
+    </article>
+    <article class="panel">
+      <h3>By category</h3>
+      @for (item of entries(report?.byCategory); track item.key) {
+        <p>{{ item.key }} · {{ item.value }}</p>
+      }
+    </article>
+  </div>
+  <article class="panel">
+    <h3>Recent tickets</h3>
+    <table>
+      <thead><tr><th>Number</th><th>Title</th><th>Status</th><th>Priority</th></tr></thead>
+      <tbody>
+        @for (ticket of tickets; track ticket.id) {
+          <tr>
+            <td><a [routerLink]="['/tickets', ticket.id]">{{ ticket.ticketNumber }}</a></td>
+            <td>{{ ticket.title }}</td>
+            <td><span [class]="'pill status-' + ticket.status">{{ ticket.status }}</span></td>
+            <td><span [class]="'pill priority-' + ticket.priority">{{ ticket.priority }}</span></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </article>
+  <article class="panel">
+    <h3>Audit</h3>
+    @for (entry of audit; track entry.id) {
+      <p>{{ entry.createdAt }} · {{ entry.actor }} · {{ entry.action }}</p>
+    }
+  </article>
+</section>

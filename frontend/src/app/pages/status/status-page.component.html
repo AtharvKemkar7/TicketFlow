@@ -1,0 +1,70 @@
+<section class="hero">
+  <div>
+    <p class="eyebrow">Enterprise ITSM foundation</p>
+    <h1>AI Ticket Resolution System</h1>
+    <p class="lede">
+      Phase 1 establishes the modular monolith: Java 21, Spring Boot, MariaDB, and Angular
+      with environment configuration ready for authentication in Phase 2.
+    </p>
+  </div>
+  <button type="button" class="refresh" (click)="refresh()">Refresh status</button>
+</section>
+
+@if (loading) {
+  <div class="state">Checking backend and database connectivity...</div>
+}
+
+@if (error) {
+  <div class="state error">{{ error }}</div>
+}
+
+@if (!loading && health && info) {
+  <section class="grid">
+    <article class="card">
+      <h2>API</h2>
+      <p class="status" [class.up]="health.status === 'UP'">{{ health.status }}</p>
+      <dl>
+        <div>
+          <dt>Application</dt>
+          <dd class="mono">{{ health.application }}</dd>
+        </div>
+        <div>
+          <dt>Phase</dt>
+          <dd>{{ info.phaseName }} ({{ info.phase }})</dd>
+        </div>
+        <div>
+          <dt>Java</dt>
+          <dd class="mono">{{ info.javaVersion }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="card">
+      <h2>MariaDB</h2>
+      <p class="status" [class.up]="health.database.status === 'UP'">{{ health.database.status }}</p>
+      <dl>
+        <div>
+          <dt>Product</dt>
+          <dd>{{ health.database.product || 'Unavailable' }}</dd>
+        </div>
+        <div>
+          <dt>Version</dt>
+          <dd class="mono">{{ health.database.version || 'n/a' }}</dd>
+        </div>
+        <div>
+          <dt>Connection</dt>
+          <dd>{{ health.database.valid ? 'Valid' : 'Not validated' }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="card wide">
+      <h2>Stack</h2>
+      <ul class="stack">
+        @for (item of info.stack; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+    </article>
+  </section>
+}
